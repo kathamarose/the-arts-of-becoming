@@ -1,0 +1,132 @@
+{
+  "name": "layered-collage",
+  "label": "Layered photo collage",
+  "description": "Three photos layered like prints on a table, with a round badge and a short story beside them.",
+  "version": 1,
+  "category": "about",
+  "tags": [
+    "about",
+    "collage",
+    "photos",
+    "layered"
+  ],
+  "fields": {
+    "eyebrow": {
+      "kind": "text",
+      "label": "Small line above",
+      "optional": true,
+      "maxLength": 60
+    },
+    "headline": {
+      "kind": "text",
+      "label": "Headline",
+      "maxLength": 100
+    },
+    "body": {
+      "kind": "richText",
+      "label": "Story",
+      "marks": [
+        "bold",
+        "italic",
+        "link"
+      ],
+      "blocks": [
+        "paragraph",
+        "bulletList"
+      ],
+      "maxLength": 700
+    },
+    "photoLarge": {
+      "kind": "image",
+      "label": "Large photo",
+      "aspect": "4:5"
+    },
+    "photoSide": {
+      "kind": "image",
+      "label": "Side photo",
+      "aspect": "4:5"
+    },
+    "photoSmall": {
+      "kind": "image",
+      "label": "Small photo",
+      "aspect": "1:1"
+    },
+    "badge": {
+      "kind": "text",
+      "label": "Badge text",
+      "optional": true,
+      "maxLength": 24
+    },
+    "cta": {
+      "kind": "link",
+      "label": "Button link",
+      "optional": true
+    },
+    "ctaLabel": {
+      "kind": "text",
+      "label": "Button text",
+      "optional": true,
+      "maxLength": 32
+    }
+  },
+  "defaults": {
+    "eyebrow": "Our story",
+    "headline": "Made by hand, one batch at a time",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "We started with one oven and a borrowed table. Twelve years later we still shape every loaf by hand, and still know most of our neighbours by name."
+            }
+          ]
+        }
+      ]
+    },
+    "photoLarge": {
+      "src": "https://images.unsplash.com/photo-1772758632331-56fcdb6fd45b?w=2080&q=80",
+      "alt": "A smiling baker in a hairnet sliding bread from a brick oven",
+      "width": 2080,
+      "height": 1387,
+      "focal": [
+        0.3,
+        0.35
+      ]
+    },
+    "photoSide": {
+      "src": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1560&q=80",
+      "alt": "Two rustic sourdough loaves dusted with flour beside wheat stalks",
+      "width": 1560,
+      "height": 1038
+    },
+    "photoSmall": {
+      "src": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=680&q=80",
+      "alt": "A golden croissant being dusted with sugar on a dark slate",
+      "width": 680,
+      "height": 544
+    },
+    "badge": "Since 2014",
+    "cta": {
+      "type": "url",
+      "url": "/about"
+    },
+    "ctaLabel": "Meet the bakers"
+  },
+  "template": "<div class=\"lc\">\n  <div class=\"lc__copy\">\n    {{#if eyebrow}}<p class=\"lc__eyebrow\">{{eyebrow}}</p>{{/if}}\n    <h2 class=\"lc__title\">{{headline}}</h2>\n    {{rich body class=\"lc__body\"}}\n    {{#if cta}}<div class=\"lc__actions\">{{button cta label=ctaLabel variant=\"secondary\"}}</div>{{/if}}\n  </div>\n  <div class=\"lc__collage\">\n    <figure class=\"lc__piece lc__piece--large\">{{image photoLarge sizes=\"(max-width: 767px) 70vw, 34vw\" aspect=\"4:5\" fit=\"cover\"}}</figure>\n    <figure class=\"lc__piece lc__piece--side\">{{image photoSide sizes=\"(max-width: 767px) 55vw, 26vw\" aspect=\"4:5\" fit=\"cover\"}}</figure>\n    <figure class=\"lc__piece lc__piece--small\">{{image photoSmall sizes=\"(max-width: 767px) 38vw, 18vw\" aspect=\"1:1\" fit=\"cover\"}}</figure>\n    {{#if badge}}<p class=\"lc__badge\"><span>{{badge}}</span></p>{{/if}}\n  </div>\n</div>",
+  "css": ".lc {\n  display: grid;\n  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);\n  gap: var(--os-space-2xl);\n  align-items: center;\n}\n.lc__eyebrow {\n  margin: 0 0 var(--os-space-sm);\n  font-family: var(--os-font-label);\n  font-size: var(--os-type-eyebrow-font-size);\n  letter-spacing: var(--os-type-eyebrow-letter-spacing);\n  text-transform: var(--os-type-eyebrow-text-transform);\n  color: var(--os-eyebrow-color);\n}\n.lc__title {\n  margin: 0;\n  font-family: var(--os-font-heading);\n  font-weight: var(--os-font-weight-heading);\n  font-size: var(--os-type-h1-font-size);\n  line-height: var(--os-type-h1-line-height);\n  letter-spacing: var(--os-type-h1-letter-spacing);\n  color: var(--os-color-heading);\n  text-wrap: balance;\n}\n.lc__body { margin-top: var(--os-space-md); color: var(--os-color-text); max-width: 32em; }\n.lc__actions { margin-top: var(--os-space-xl); }\n.lc__collage { position: relative; aspect-ratio: 6 / 5; }\n.lc__piece {\n  position: absolute;\n  margin: 0;\n  overflow: hidden;\n  border-radius: var(--os-radius-image);\n  box-shadow: var(--os-shadow-lg);\n  background: var(--os-color-surface);\n  transition: transform var(--os-motion-duration-slow, 400ms) var(--os-motion-ease, ease);\n}\n.lc__piece picture, .lc__piece img { display: block; width: 100%; height: 100%; object-fit: cover; }\n.lc__piece--large { top: 0; left: 0; width: 56%; height: 86%; z-index: 1; }\n.lc__piece--side {\n  right: 0;\n  bottom: 6%;\n  width: 42%;\n  height: 70%;\n  z-index: 2;\n  transform: rotate(2.5deg);\n  border: var(--os-space-2xs) solid var(--os-color-background);\n}\n.lc__piece--small {\n  left: 34%;\n  bottom: -4%;\n  width: 26%;\n  aspect-ratio: 1;\n  z-index: 3;\n  transform: rotate(-5deg);\n  border: var(--os-space-2xs) solid var(--os-color-background);\n}\n.lc__collage:hover .lc__piece--side { transform: rotate(0deg) translateY(-8px); }\n.lc__collage:hover .lc__piece--small { transform: rotate(-1deg) translateY(-6px); }\n.lc__badge {\n  position: absolute;\n  top: 4%;\n  right: 6%;\n  z-index: 4;\n  display: grid;\n  place-items: center;\n  width: 7.5rem;\n  aspect-ratio: 1;\n  margin: 0;\n  padding: var(--os-space-sm);\n  border-radius: var(--os-radius-full);\n  background: var(--os-color-accent);\n  color: var(--os-color-accent-text);\n  font-family: var(--os-font-heading);\n  font-size: var(--os-type-h4-font-size);\n  line-height: 1.1;\n  text-align: center;\n  transform: rotate(8deg);\n}\n@media (min-width: 768px) and (max-width: 1199px) {\n  .lc { gap: var(--os-space-xl); }\n}\n@media (max-width: 767px) {\n  .lc { grid-template-columns: minmax(0, 1fr); gap: var(--os-space-xl); }\n  .lc__collage { margin-inline: var(--os-space-xs); }\n  .lc__badge { width: 5.5rem; font-size: var(--os-type-small-font-size); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .lc__piece { transition: none; }\n}",
+  "section": {
+    "width": "wide",
+    "padding": {
+      "d": "2xl",
+      "m": "xl"
+    }
+  },
+  "ai": {
+    "purpose": "An about/story section with a layered, tactile photo collage.",
+    "whenToUse": "Craft, food, studio and maker businesses telling their story; when three good photos exist.",
+    "avoid": "Using it with low-quality or unrelated photos; more than one per page."
+  }
+}

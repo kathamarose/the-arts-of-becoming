@@ -78,6 +78,79 @@
           }
         }
       ]
+    },
+    {
+      "id": "sec_pg26rr483r",
+      "preset": "component/layered-collage@1",
+      "label": "Layered photo collage",
+      "layout": {
+        "mode": "stack",
+        "columns": {
+          "d": [
+            12
+          ]
+        },
+        "width": "wide"
+      },
+      "style": {
+        "padding": {
+          "d": "2xl",
+          "m": "xl"
+        }
+      },
+      "blocks": [
+        {
+          "id": "blk_wfgkepdexe",
+          "type": "component/layered-collage",
+          "v": 1,
+          "fields": {
+            "eyebrow": "Our story",
+            "headline": "Made by hand, one batch at a time",
+            "body": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "We started with one oven and a borrowed table. Twelve years later we still shape every loaf by hand, and still know most of our neighbours by name."
+                    }
+                  ]
+                }
+              ]
+            },
+            "photoLarge": {
+              "src": "https://images.unsplash.com/photo-1772758632331-56fcdb6fd45b?w=2080&q=80",
+              "alt": "A smiling baker in a hairnet sliding bread from a brick oven",
+              "width": 2080,
+              "height": 1387,
+              "focal": [
+                0.3,
+                0.35
+              ]
+            },
+            "photoSide": {
+              "src": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1560&q=80",
+              "alt": "Two rustic sourdough loaves dusted with flour beside wheat stalks",
+              "width": 1560,
+              "height": 1038
+            },
+            "photoSmall": {
+              "src": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=680&q=80",
+              "alt": "A golden croissant being dusted with sugar on a dark slate",
+              "width": 680,
+              "height": 544
+            },
+            "badge": "Since 2014",
+            "cta": {
+              "type": "page",
+              "page": "pg_zwmkq8bnd0"
+            },
+            "ctaLabel": "Meet the bakers"
+          }
+        }
+      ]
     }
   ]
 }
